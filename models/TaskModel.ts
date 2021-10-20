@@ -1,9 +1,10 @@
 import mongoose, {Schema} from 'mongoose';
 
-const UserSchema = new Schema({
-    name: {type: String, required: true},
-    email: {type: String, required: true},
-    password: {type: String, required: true},
+const TaskSchema = new Schema({
+    name : {type : String, required : true},
+    userId : {type : String , required : true},
+    finishPrevisionDate : {type : Date, required : true},
+    finishDate : {type : Date, required : false},
 });
 
-export const UserModel = mongoose.models.users || mongoose.model('users', UserSchema);
+export const TaskModel = mongoose.models.tasks || mongoose.model('tasks', TaskSchema);
