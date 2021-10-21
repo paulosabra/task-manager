@@ -10,6 +10,18 @@
 			"item": [
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"jwtTaskManager\", jsonData.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -50,7 +62,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTcwMGQ0M2ZiZmJhMzJmYTQ5NGUzMmMiLCJpYXQiOjE2MzQ3MzM1NDB9.EHWTkliw6hEfjpyMgYmaRKELutr9S2UnEgPNSgwSqIM",
+									"value": "{{jwtTaskManager}}",
 									"type": "string"
 								}
 							]
@@ -59,7 +71,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Tarefa 1\",\n    \"userId\": \"61677bd949313c1b3d9bdba6\",\n    \"finishPrevisionDate\": \"2021-10-13\"\n}",
+							"raw": "{\n    \"name\": \"Tarefa 2\",\n    \"userId\": \"61677bd949313c1b3d9bdba6\",\n    \"finishPrevisionDate\": \"2021-10-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,6 +88,155 @@
 							"path": [
 								"api",
 								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Tarefa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtTaskManager}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tarefa 3\",\n    \"finishPrevisionDate\": \"2021-10-13\",\n    \"finishDate\": \"2021-10-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/task?id=61709f4482f27d29ab78ea32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "61709f4482f27d29ab78ea32"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Tarefa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtTaskManager}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/task?id=61709f4482f27d29ab78ea32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "61709f4482f27d29ab78ea32"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tarefas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtTaskManager}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task"
+							],
+							"query": [
+								{
+									"key": "finishPrevisionDateStart",
+									"value": "2021-10-01",
+									"disabled": true
+								},
+								{
+									"key": "finishPrevisionDateEnd",
+									"value": "2021-10-20",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "0",
+									"disabled": true
+								}
 							]
 						}
 					},
