@@ -2,6 +2,7 @@ import {NextPage} from "next";
 import {Header} from "../components/Header";
 import {AccessTokenProps} from "../types/AccessTokenProps";
 import {Filter} from "../components/Filter";
+import {Footer} from "../components/Footer";
 
 const Home: NextPage<AccessTokenProps> = ({setToken}) => {
 
@@ -16,6 +17,7 @@ const Home: NextPage<AccessTokenProps> = ({setToken}) => {
         <>
             <Header logout={logout}/>
             <Filter/>
+            <Footer/>
         </>
     );
 }
