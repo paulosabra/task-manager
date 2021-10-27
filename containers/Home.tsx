@@ -1,6 +1,7 @@
 import {NextPage} from "next";
 import {Header} from "../components/Header";
 import {AccessTokenProps} from "../types/AccessTokenProps";
+import {Filter} from "../components/Filter";
 
 const Home: NextPage<AccessTokenProps> = ({setToken}) => {
 
@@ -14,6 +15,7 @@ const Home: NextPage<AccessTokenProps> = ({setToken}) => {
     return (
         <>
             <Header logout={logout}/>
+            <Filter/>
         </>
     );
 }

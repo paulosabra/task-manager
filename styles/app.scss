@@ -1,20 +1,18 @@
 @import "~bootstrap/scss/bootstrap";
 
 @font-face {
-  font-family: "Biennale";
+  font-family: 'Biennale Regular';
   font-style: normal;
   font-weight: normal;
-  src: url("../public/fonts/BiennaleRegular.otf") format('opentype');
+  src: url('../public/fonts/BiennaleRegular.otf') format('opentype');
 }
 
 html {
   height: 100%;
-  font-family: "Biennale";
 }
 
 body {
   height: 100%;
-  font-family: "Biennale";
 }
 
 #__next {
@@ -29,17 +27,66 @@ body {
   padding: 0;
 }
 
+@import './config.scss';
 @import './login.scss';
 @import './header.scss';
-@import './config.scss';
+@import './filter.scss';
 
 button {
   display: block;
   border: none;
   background-color: $primary-color;
-  color: $white;
+  color: white;
   border-radius: 12px;
   font-size: 16px;
   height: 40px;
   align-items: center;
+}
+
+input, select {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: $primary-color;
+  min-width: 175px;
+  background-color: transparent;
+
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-bottom-width: 0.1em;
+  border-color: $secondary-color;
+
+  outline: none;
+
+  cursor: pointer;
+
+  &:focus {
+    border-color: $primary-color;
+  }
+
+  &::placeholder {
+    color: $secondary-color;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: $secondary-color;
+  }
+
+  &::-ms-input-placeholder {
+    color: $secondary-color;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  input, select {
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-radius: 8px;
+    padding: 5px;
+  }
 }

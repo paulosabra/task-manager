@@ -1,0 +1,94 @@
+@import './config.scss';
+
+.component-filter {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  background-color: $card-color;
+  border-radius: 12px;
+  padding: 10px;
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      color: $primary-color;
+      letter-spacing: 0.01em;
+      font-size: 18px;
+    }
+  }
+
+  .form {
+    display: none;
+  }
+
+  .filtersMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 10px;
+
+      label {
+        font-size: 16px;
+        letter-spacing: 0.01em;
+        color: $primary-color;
+        margin: 0;
+        min-width: 110px;
+      }
+    }
+  }
+
+  @media screen and(min-width: 1024px) {
+    padding: 20px;
+
+    .filtrosMobile {
+      display: none;
+    }
+
+    .title {
+
+      img {
+        display: none;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        label {
+          font-size: 16px;
+          letter-spacing: 0.01em;
+          color: $primary-color;
+          margin: 0 10px;
+        }
+
+        input, select {
+          border-color: $primary-color;
+        }
+
+        .line {
+          border-color: $primary-color;
+          border-width: 1px;
+          border-style: solid;
+          height: 40px;
+          width: 0;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
