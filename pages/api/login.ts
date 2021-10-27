@@ -5,6 +5,7 @@ import md5 from 'md5';
 import {User} from '../../types/User';
 import {dbConnect} from '../../middlewares/dbConnect';
 import jwt from 'jsonwebtoken';
+import {corsPolicy} from "../../middlewares/corsPolicy";
 
 type LoginRequest = {
     login: string
@@ -45,4 +46,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     }
 }
 
-export default dbConnect(handler);
+export default corsPolicy(dbConnect(handler));

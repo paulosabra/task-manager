@@ -6,6 +6,7 @@ import {DefaultResponse} from '../../types/DefaultResponse';
 import {GetTasksRequest} from '../../types/GetTasksRequest';
 import {Task} from '../../types/Task';
 import {TaskRequest} from '../../types/TaskRequest';
+import {corsPolicy} from "../../middlewares/corsPolicy";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse | Task []>) => {
     try {
@@ -153,4 +154,4 @@ const getTasks = async (req: NextApiRequest, res: NextApiResponse<DefaultRespons
     return res.status(200).json(result);
 }
 
-export default dbConnect(jwtValidator(handler));
+export default corsPolicy(dbConnect(jwtValidator(handler)));

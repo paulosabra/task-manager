@@ -4,6 +4,7 @@ import {DefaultResponse} from '../../types/DefaultResponse';
 import {UserModel} from '../../models/UserModel';
 import {dbConnect} from '../../middlewares/dbConnect';
 import {User} from '../../types/User';
+import {corsPolicy} from "../../middlewares/corsPolicy";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
     try {
@@ -32,4 +33,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     }
 }
 
-export default dbConnect(handler);
+export default corsPolicy(dbConnect(handler));
