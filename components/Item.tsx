@@ -1,11 +1,9 @@
 import {NextPage} from "next";
 import {Task} from "../types/Task";
 
-type ItemProps = {
-    task: Task
-}
+type ItemProps = { task: Task, setTaskAndShow(task: Task): void }
 
-const Item: NextPage<ItemProps> = ({task}) => {
+const Item: NextPage<ItemProps> = ({task, setTaskAndShow}) => {
 
     const getFormatDate = (finishDate: any | undefined, finishPrevisionDate: any) => {
         if (finishDate) {
@@ -17,7 +15,8 @@ const Item: NextPage<ItemProps> = ({task}) => {
     }
 
     return (
-        <div className={"component-item" + (task.finishDate ? '' : ' active')}>
+        <div className={"component-item" + (task.finishDate ? '' : ' active')}
+             onClick={() => task.finishDate ? null : setTaskAndShow(task)}>
             <img src={task.finishDate ? '/checked.svg' : '/not-checked.svg'}
                  alt={task.finishDate ? 'Tarefa concluida' : 'Tarefa em aberto'}/>
             <div>
