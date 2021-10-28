@@ -1,16 +1,20 @@
 import {useState} from "react";
 import {executeRequest} from "../services/api";
 import {NextPage} from "next";
-import {AccessTokenProps} from "../types/AccessTokenProps";
 
-export const Login: NextPage<AccessTokenProps> = ({setToken}) => {
+export type LoginProps = {
+    setToken(e: string): void
+    setRegister(e: string): void
+}
+
+export const Login: NextPage<LoginProps> = ({setToken, setRegister}) => {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setLoading] = useState(false);
 
-    const doLogin = async () => {
+    const goHome = async () => {
         try {
             setError('');
             setLoading(true);
@@ -35,8 +39,11 @@ export const Login: NextPage<AccessTokenProps> = ({setToken}) => {
                 setError('Não foi possivel processar o login, tente novamente');
             }
         }
-
         setLoading(false);
+    }
+
+    const goRegister = () => {
+        setRegister('Registrar');
     }
 
     return (
@@ -46,17 +53,18 @@ export const Login: NextPage<AccessTokenProps> = ({setToken}) => {
                 <p className="error">{error}</p>
                 <div className="input">
                     <img src={"/mail.svg"} alt="Informe seu email"/>
-                    <input type="text" placeholder="Informe seu email" value={login}
+                    <input type="email" placeholder="Email" value={login}
                            onChange={event => setLogin(event.target.value)}/>
                 </div>
                 <div className="input">
-                    <img src={"/lock.svg"} alt="Informe sua senha"/>
-                    <input type="password" placeholder="Informe sua senha" value={password}
+                    <img src={"/password.svg"} alt="Informe sua senha"/>
+                    <input type="password" placeholder="Senha" value={password}
                            onChange={event => setPassword(event.target.value)}/>
                 </div>
-                <button type="button" onClick={doLogin} disabled={isLoading} className={isLoading ? 'loading' : ''}>
+                <button type="button" onClick={goHome} disabled={isLoading} className={isLoading ? 'loading' : ''}>
                     {isLoading ? '...Carregando' : 'Login'}
                 </button>
+                <button type="button" onClick={goRegister} className="secondary-button">Registrar</button>
             </form>
         </div>
     )

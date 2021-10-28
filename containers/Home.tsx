@@ -1,6 +1,5 @@
 import {NextPage} from "next";
 import {Header} from "../components/Header";
-import {AccessTokenProps} from "../types/AccessTokenProps";
 import {Filter} from "../components/Filter";
 import {Footer} from "../components/Footer";
 import {List} from "../components/List";
@@ -9,7 +8,11 @@ import {useEffect, useState} from "react";
 import {executeRequest} from "../services/api";
 import {Modal} from "react-bootstrap";
 
-const Home: NextPage<AccessTokenProps> = ({setToken}) => {
+export type HomeProps = {
+    setToken(e: string): void
+}
+
+const Home: NextPage<HomeProps> = ({setToken}) => {
 
     const logout = () => {
         localStorage.removeItem('accessToken');
