@@ -18,10 +18,20 @@ const Home: NextPage<AccessTokenProps> = ({setToken}) => {
     }
 
     const [task, setTasks] = useState<Task[]>([]);
+    const [finishPrevisionDateStart, setFinishPrevisionDateStart] = useState('');
+    const [finishPrevisionDateEnd, setFinishPrevisionDateEnd] = useState('');
+    const [status, setStatus] = useState('0');
 
     const getFilteredList = async () => {
         try {
-            const result = await executeRequest('task', 'GET');
+            let query = `?status=${status}`;
+            if (finishPrevisionDateStart) {
+                query += `&finishPrevisionDateStart=${finishPrevisionDateStart}`;
+            }
+            if (finishPrevisionDateEnd) {
+                query += `&finishPrevisionDateEnd=${finishPrevisionDateEnd}`;
+            }
+            const result = await executeRequest('task' + query, 'GET');
             if (result && result.data) {
                 setTasks(result.data);
             }
@@ -32,12 +42,19 @@ const Home: NextPage<AccessTokenProps> = ({setToken}) => {
 
     useEffect(() => {
         getFilteredList();
-    }, [])
+    }, [finishPrevisionDateStart, finishPrevisionDateEnd, status]);
 
     return (
         <>
             <Header logout={logout}/>
-            <Filter/>
+            <Filter
+                finishPrevisionDateStart={finishPrevisionDateStart}
+                finishPrevisionDateEnd={finishPrevisionDateEnd}
+                status={status}
+                setFinishPrevisionDateStart={setFinishPrevisionDateStart}
+                setFinishPrevisionDateEnd={setFinishPrevisionDateEnd}
+                setStatus={setStatus}
+            />
             <List tasks={task}/>
             <Footer/>
         </>
